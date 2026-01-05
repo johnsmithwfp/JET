@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bokor&display=swap" rel="stylesheet">
+    <link href="styling.css" rel="stylesheet" />
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#tocNav" data-bs-offset="110" tabindex="0">
+    <header class="app-header d-lg-none">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center gap-2 py-2">
+                <button type="button" class="btn btn-outline-primary border-0" data-bs-toggle="offcanvas" data-bs-target="#mobileToc" aria-controls="mobileToc" aria-label="Open table of contents">
+                    <i class="bi bi-list" style="font-size: 1.5rem" aria-hidden="true"></i>
+                </button>
+                <h1 class="h5 m-0 fw-semibold text-primary quintessential-regular"></h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row g-0">
+            <aside id="toc-col" class="col-lg-2 d-none d-lg-block px-3">
+                <div class="position-sticky" style="top: 1rem">
+                    <div class="toc-panel">
+                        <div class="label bokor-regular">Century</div>
+                        <nav id="tocNav" class="nav nav-pills flex-column gap-2" aria-label="Century table of contents"></nav>
+                    </div>
+                </div>
+            </aside>
+            <main id="timeline" class="col-lg-7 px-3 px-lg-4 py-3 py-lg-4"></main>
+            <aside id="gallery-col" class="col-lg-3 d-none d-lg-block px-3">
+                <div id="galleryWrap" class="pt-3 pb-4"></div>
+            </aside>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileToc" aria-labelledby="mobileTocLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title bokor-regular" id="mobileTocLabel">Century</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <nav id="mobileTocNav" class="nav nav-pills flex-column gap-1" aria-label="Century table of contents"></nav>
+        </div>
+    </div>
+    <script type="module" src="./timeline.js"></script>
+</body>
+
+</html>

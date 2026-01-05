@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title|default("History Timeline") }}{% endblock %}
+
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/styling.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<header class="app-header d-lg-none">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center gap-2 py-2">
+            <button type="button" class="btn btn-outline-primary border-0" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileToc" aria-controls="mobileToc" aria-label="Open table of contents">
+                <i class="bi bi-list" style="font-size: 1.5rem" aria-hidden="true"></i>
+            </button>
+            <h1 class="h5 m-0 fw-semibold text-primary quintessential-regular"></h1>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid">
+    <div class="row g-0">
+        <aside id="toc-col" class="col-lg-2 d-none d-lg-block px-3">
+            <div class="position-sticky" style="top: 1rem">
+                <div class="toc-panel">
+                    <div class="label bokor-regular">Century</div>
+                    <nav id="tocNav" class="nav nav-pills flex-column gap-2" aria-label="Century table of contents">
+                    </nav>
+                </div>
+            </div>
+        </aside>
+
+        <main id="timeline" class="col-lg-7 px-3 px-lg-4 py-3 py-lg-4"></main>
+
+        <aside id="gallery-col" class="col-lg-3 d-none d-lg-block px-3">
+            <div id="galleryWrap" class="pt-3 pb-4"></div>
+        </aside>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileToc" aria-labelledby="mobileTocLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title bokor-regular" id="mobileTocLabel">Century</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <nav id="mobileTocNav" class="nav nav-pills flex-column gap-1" aria-label="Century table of contents"></nav>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Put ScrollSpy attrs on the *real* body (owned by base.html)
+    document.body.dataset.bsSpy = "scroll";
+    document.body.dataset.bsTarget = "#tocNav";
+    document.body.dataset.bsOffset = "110";
+    document.body.tabIndex = 0;
+
+    // Flask static-safe image base URL:
+    // url_for('static', filename='images') returns "/static/images" (no trailing slash)
+    window.image_base_url = {{ (url_for('static', filename = 'images') + '/') | tojson }};
+
+    // Let Flask/Jinja own the document <title> (avoid JS overriding server-rendered title).
+    window.timeline_set_document_title = false;
+
+    // Point the module loader at Flask’s static URL for data.js
+    window.timeline_data_url = {{ url_for('static', filename = 'js/data.js') | tojson }};
+</script>
+
+<script type="module" src="{{ url_for('static', filename='js/timeline.js') }}"></script>
+{% endblock %}
